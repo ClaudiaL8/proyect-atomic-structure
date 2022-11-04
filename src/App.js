@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Stack } from "@mui/material";
+import { TechnicalTestContextProvider } from "./contexts/technicalTestContexts";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Titillium Web", "Roboto", "Helvetica", "sans-serif"].join(
+      ","
+    ),
+    fontWeightRegular: 600,
+  },
+  palette: {
+    primary: {
+      main: "#ef0c3d",
+    },
+    secondary: {
+      main: "#1f383f",
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Stack justifyContent={"space-between"} height="100%">
+        <TechnicalTestContextProvider>
+          <Router>
+            <Routes></Routes>
+          </Router>
+        </TechnicalTestContextProvider>
+      </Stack>
+    </ThemeProvider>
   );
 }
 
