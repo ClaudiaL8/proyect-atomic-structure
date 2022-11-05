@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Stack } from "@mui/material";
 import { TechnicalTestContextProvider } from "./contexts/technicalTestContexts";
+import Main from "./layout/TabsPage";
 
 const theme = createTheme({
   typography: {
@@ -24,10 +25,12 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack justifyContent={"space-between"} height="100%">
+      <Stack height="100%">
         <TechnicalTestContextProvider>
           <Router>
-            <Routes></Routes>
+            <Routes>
+              <Route path="/" element={<Main />} />
+            </Routes>
           </Router>
         </TechnicalTestContextProvider>
       </Stack>
