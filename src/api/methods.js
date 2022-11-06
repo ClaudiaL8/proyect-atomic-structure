@@ -46,7 +46,7 @@ export const getAlbumns = async () => {
 };
 
 const getAuthor = async (id) => {
-  const url = `${USERS_URL}id=${id}`;
+  const url = `${USERS_URL}?id=${id}`;
   const { data } = await axios.get(url);
   return data[0].name;
 };

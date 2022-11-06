@@ -33,6 +33,7 @@ export const PostsTable = () => {
       onChange: handleChangeInput,
       label: "How many posts you want to show?",
       type: "number",
+      size: "small",
     },
   };
 

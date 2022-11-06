@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab } from "@mui/material";
+import { Box, Tabs, Tab, Container } from "@mui/material";
 import { PostsTable, AlbumnsTable, UsersTable } from "../organisms";
 
 const TabsPage = () => {
@@ -25,8 +25,14 @@ const TabsPage = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Container
+      sx={{
+        paddingLeft: 20,
+        paddingRigth: 20,
+        height: "100%",
+      }}
+    >
+      <Box sx={{ borderBottom: 1 }}>
         <Tabs value={tabSelected} onChange={handleChange} centered>
           <Tab label="Users" />
           <Tab label="Posts" />
@@ -42,7 +48,7 @@ const TabsPage = () => {
       <TabPanel value={tabSelected} index={2}>
         <AlbumnsTable />
       </TabPanel>
-    </Box>
+    </Container>
   );
 };
 

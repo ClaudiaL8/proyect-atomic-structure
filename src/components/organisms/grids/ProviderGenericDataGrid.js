@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/material";
-import ComponentCircularProgress from "../../atoms/CircularProgress";
+import CircularProgress from "../../atoms/CircularProgress";
 import Alert from "../../atoms/Alert";
 import GenericDataGrid from "./GenericDataGrid";
 
@@ -13,8 +13,13 @@ const ProviderGenericDataGrid = (props) => {
   } = props;
 
   return (
-    <Container>
-      {isLoading && <ComponentCircularProgress />}
+    <Container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {isLoading && <CircularProgress />}
       {!isLoading && rows && (
         <GenericDataGrid
           input={input}

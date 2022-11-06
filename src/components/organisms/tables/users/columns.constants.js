@@ -12,6 +12,6 @@ export const usersTableColumns = [
   {
     field: "numberOfPosts",
     headerName: "Post written",
-    width: 150,
+    width: 100,
   },
 ];

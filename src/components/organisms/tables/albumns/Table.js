@@ -34,6 +34,7 @@ export const AlbumnsTable = () => {
       onChange: handleChangeInput,
       label: "How many albumns you want to show?",
       type: "number",
+      size: "small",
     },
   };
   return <ProviderGenericDataGrid data={props} />;

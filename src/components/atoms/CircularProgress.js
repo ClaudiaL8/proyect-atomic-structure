@@ -1,8 +1,8 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
 
-const ComponentCircularProgress = () => {
+const Loading = () => {
   return <CircularProgress />;
 };
 
-export default ComponentCircularProgress;
+export default Loading;
