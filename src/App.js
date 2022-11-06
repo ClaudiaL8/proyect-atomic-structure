@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { TechnicalTestContextProvider } from "./contexts/technicalTestContexts";
-import Main from "./layout/TabsPage";
+import TabsPage from "./components/templates/TabsPage";
 
 const theme = createTheme({
   typography: {
@@ -20,15 +20,13 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box height="100%">
-        <TechnicalTestContextProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Main />} />
-            </Routes>
-          </Router>
-        </TechnicalTestContextProvider>
-      </Box>
+      <TechnicalTestContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<TabsPage />} />
+          </Routes>
+        </Router>
+      </TechnicalTestContextProvider>
     </ThemeProvider>
   );
 }

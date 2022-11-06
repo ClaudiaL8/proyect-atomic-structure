@@ -2,7 +2,6 @@ import {
   createContext,
   useContext,
   useMemo,
-  useEffect,
   useState,
   useCallback,
 } from "react";
@@ -27,7 +26,8 @@ export const TechnicalTestContextProvider = ({ children }) => {
   const [countPosts, setCountPosts] = useState(initialState.countPosts);
   const [countAlbumns, setCountAlbumns] = useState(initialState.countAlbumns);
 
-  const fetchUsersList = async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchUsersList = useCallback(async () => {
     setUsersList({ ...initialState.usersList, isLoading: true });
     try {
       const data = await getUsers();
@@ -35,7 +35,7 @@ export const TechnicalTestContextProvider = ({ children }) => {
     } catch (err) {
       setUsersList({ isLoading: false, error: err.message });
     }
-  };
+  });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchPostsList = useCallback(async () => {
@@ -59,32 +59,30 @@ export const TechnicalTestContextProvider = ({ children }) => {
     }
   });
 
-  useEffect(() => {
-    fetchUsersList();
-  }, []);
-
   const state = useMemo(
     () => ({
+      fetchUsersList,
       usersList,
+      fetchPostsList,
       postsList,
       countPosts,
       setCountPosts,
+      fetchAlbumnsList,
       albumnsList,
       countAlbumns,
       setCountAlbumns,
-      fetchPostsList,
-      fetchAlbumnsList,
     }),
     [
+      fetchUsersList,
       usersList,
+      fetchPostsList,
       postsList,
       countPosts,
       setCountPosts,
+      fetchAlbumnsList,
       albumnsList,
       countAlbumns,
       setCountAlbumns,
-      fetchPostsList,
-      fetchAlbumnsList,
     ]
   );
 

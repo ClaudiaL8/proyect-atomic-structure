@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, Tabs, Tab } from "@mui/material";
-import UsersList from "../components/UsersList";
-import PostsList from "../components/PostsList";
-import AlbumnsList from "../components//AlbumnsList";
+import { PostsTable, AlbumnsTable, UsersTable } from "../organisms";
 
 const TabsPage = () => {
   const [tabSelected, setTabSelected] = useState(0);
@@ -36,13 +34,13 @@ const TabsPage = () => {
         </Tabs>
       </Box>
       <TabPanel value={tabSelected} index={0}>
-        <UsersList />
+        <UsersTable />
       </TabPanel>
       <TabPanel value={tabSelected} index={1}>
-        <PostsList />
+        <PostsTable />
       </TabPanel>
       <TabPanel value={tabSelected} index={2}>
-        <AlbumnsList />
+        <AlbumnsTable />
       </TabPanel>
     </Box>
   );
