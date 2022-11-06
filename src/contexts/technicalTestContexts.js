@@ -1,11 +1,18 @@
-import { createContext, useContext, useMemo, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { getUsers, getPosts, getAlbumns } from "../api/index";
 
 const initialState = {
   usersList: { isLoading: false, data: undefined, error: "" },
   postsList: { isLoading: false, data: undefined, error: "" },
-  countPosts: "20",
   albumnsList: { isLoading: false, data: undefined, error: "" },
+  countPosts: "20",
   countAlbumns: "20",
 };
 
@@ -16,8 +23,8 @@ export const useTechnicalTest = () => useContext(TechnicalTest);
 export const TechnicalTestContextProvider = ({ children }) => {
   const [usersList, setUsersList] = useState(initialState.usersList);
   const [postsList, setPostsList] = useState(initialState.postsList);
-  const [countPosts, setCountPosts] = useState(initialState.countPosts);
   const [albumnsList, setAlbumnsList] = useState(initialState.albumnsList);
+  const [countPosts, setCountPosts] = useState(initialState.countPosts);
   const [countAlbumns, setCountAlbumns] = useState(initialState.countAlbumns);
 
   const fetchUsersList = async () => {
@@ -26,35 +33,34 @@ export const TechnicalTestContextProvider = ({ children }) => {
       const data = await getUsers();
       setUsersList({ isLoading: false, data: data });
     } catch (err) {
-      setUsersList({ isLoading: false, error: "error setting users" });
+      setUsersList({ isLoading: false, error: err.message });
     }
   };
 
-  const fetchPostsList = async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchPostsList = useCallback(async () => {
     setPostsList({ ...initialState.usersList, isLoading: true });
     try {
       const data = await getPosts();
       setPostsList({ isLoading: false, data: data });
     } catch (err) {
-      setPostsList({ isLoading: false, error: "error setting users" });
+      setPostsList({ isLoading: false, error: err.message });
     }
-  };
+  });
 
-  const fetchAlbumnsList = async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchAlbumnsList = useCallback(async () => {
     setAlbumnsList({ ...initialState.usersList, isLoading: true });
     try {
       const data = await getAlbumns();
       setAlbumnsList({ isLoading: false, data: data });
     } catch (err) {
-      setAlbumnsList({ isLoading: false, error: "error setting users" });
+      setAlbumnsList({ isLoading: false, error: err.message });
     }
-  };
+  });
 
   useEffect(() => {
     fetchUsersList();
-    fetchPostsList();
-    fetchAlbumnsList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const state = useMemo(
@@ -66,6 +72,8 @@ export const TechnicalTestContextProvider = ({ children }) => {
       albumnsList,
       countAlbumns,
       setCountAlbumns,
+      fetchPostsList,
+      fetchAlbumnsList,
     }),
     [
       usersList,
@@ -75,6 +83,8 @@ export const TechnicalTestContextProvider = ({ children }) => {
       albumnsList,
       countAlbumns,
       setCountAlbumns,
+      fetchPostsList,
+      fetchAlbumnsList,
     ]
   );
 

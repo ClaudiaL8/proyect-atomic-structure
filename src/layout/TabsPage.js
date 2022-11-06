@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab, TextField } from "@mui/material";
-import GenericDataGrid from "../components/GenericDataGrid";
-import { useTechnicalTest } from "../contexts/technicalTestContexts";
+import { Box, Tabs, Tab } from "@mui/material";
+import UsersList from "../components/UsersList";
+import PostsList from "../components/PostsList";
+import AlbumnsList from "../components//AlbumnsList";
 
-const Main = () => {
-  const { countPosts, setCountPosts, countAlbumns, setCountAlbumns } =
-    useTechnicalTest();
-
+const TabsPage = () => {
   const [tabSelected, setTabSelected] = useState(0);
 
   const TabPanel = (props) => {
@@ -28,16 +26,6 @@ const Main = () => {
     setTabSelected(newValue);
   };
 
-  const handleChangeInput = ({ target }) => {
-    const value = target.value;
-    setCountPosts(value);
-  };
-
-  const handleChangeInput2 = ({ target }) => {
-    const value = target.value;
-    setCountAlbumns(value);
-  };
-
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -48,30 +36,16 @@ const Main = () => {
         </Tabs>
       </Box>
       <TabPanel value={tabSelected} index={0}>
-        <GenericDataGrid listKey={"usersList"} />
+        <UsersList />
       </TabPanel>
       <TabPanel value={tabSelected} index={1}>
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          value={countPosts}
-          onChange={handleChangeInput}
-        />
-        <GenericDataGrid listKey={"postsList"} />
+        <PostsList />
       </TabPanel>
       <TabPanel value={tabSelected} index={2}>
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          value={countAlbumns}
-          onChange={handleChangeInput2}
-        />
-        <GenericDataGrid listKey={"albumnsList"} />
+        <AlbumnsList />
       </TabPanel>
     </Box>
   );
 };
 
-export default Main;
+export default TabsPage;

@@ -14,12 +14,6 @@ export const getUsers = async () => {
   return Promise.all(promises);
 };
 
-const getNumberPosts = async (id) => {
-  const url = `https://jsonplaceholder.typicode.com/posts?userId=${id}`;
-  const { data } = await axios.get(url);
-  return data.length;
-};
-
 export const getPosts = async () => {
   const url = `https://jsonplaceholder.typicode.com/posts`;
   const { data } = await axios.get(url);
@@ -28,7 +22,20 @@ export const getPosts = async () => {
       title: post.title,
       id: post.id,
       author: await getAuthor(post.userId),
-      numberOfComments: await getNumberComments(post.postId),
+      numberOfComments: await getNumberComments(post.id),
+    };
+  });
+  return Promise.all(promises);
+};
+
+export const getAlbumns = async () => {
+  const url = `https://jsonplaceholder.typicode.com/albums`;
+  const { data } = await axios.get(url);
+  const promises = data.map(async (album) => {
+    return {
+      id: album.id,
+      author: await getAuthor(album.userId),
+      numberOfPhotos: await getNumberPhotos(album.id),
     };
   });
   return Promise.all(promises);
@@ -40,27 +47,20 @@ const getAuthor = async (id) => {
   return data[0].name;
 };
 
-const getNumberComments = async (id) => {
-  const url = `https://jsonplaceholder.typicode.com/comments?userId=${id}`;
+const getNumberPosts = async (id) => {
+  const url = `https://jsonplaceholder.typicode.com/posts?userId=${id}`;
   const { data } = await axios.get(url);
   return data.length;
 };
 
-export const getAlbumns = async () => {
-  const url = `https://jsonplaceholder.typicode.com/albums`;
+const getNumberComments = async (id) => {
+  const url = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
   const { data } = await axios.get(url);
-  const promises = data.map(async (album) => {
-    return {
-      id: album.id,
-      author: await getAuthor(album.userId),
-      numberOfPhotos: await getNumberPhotos(album.albumId),
-    };
-  });
-  return Promise.all(promises);
+  return data.length;
 };
 
 const getNumberPhotos = async (id) => {
-  const url = `https://jsonplaceholder.typicode.com/comments?userId=${id}`;
+  const url = `https://jsonplaceholder.typicode.com/photos?albumId=${id}`;
   const { data } = await axios.get(url);
   return data.length;
 };
