@@ -38,7 +38,11 @@ const Tabs = () => {
           marginBottom: "20px",
         }}
       >
-        <Text variant="h1" text="Descubre los usuarios" />
+        <Text
+          variant="h1"
+          sx={{ fontSize: "4rem" }}
+          text="Descubre los usuarios"
+        />
         <Text
           variant="body1"
           text="Selecciona la tabla y encuentra toda la información"
