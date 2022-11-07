@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Stack } from "@mui/material";
 import { TechnicalTestContextProvider } from "./contexts/technicalTestContexts";
-import TabsPage from "./components/templates/TabsPage";
+import TabsPage from "./components/pages/TabsPages";
 import Header from "./components/templates/Header";
 import Footer from "./components/templates/Footer";
-import PageNotFound from "./components/templates/PageNotFound";
+import PageNotFound from "./components/pages/NotFoundPage";
 
 const theme = createTheme({
   typography: {
     fontFamily: ["Merriweather", "sans-serif"].join(","),
     fontWeightRegular: 400,
-    fontSize: 12,
+    fontSize: 16,
   },
   palette: {
     primary: {

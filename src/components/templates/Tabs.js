@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab, Container } from "@mui/material";
-import { PostsTable, AlbumnsTable, UsersTable } from "../organisms";
+import { Box, Tabs as MaterialTabs, Tab, Container } from "@mui/material";
+import { PostsTable, AlbumnsTable, UsersTable } from "../organisms/tables";
+import Text from "../atoms/Text";
 
-const TabsPage = () => {
+const Tabs = () => {
   const [tabSelected, setTabSelected] = useState(0);
 
   const TabPanel = (props) => {
@@ -32,12 +33,23 @@ const TabsPage = () => {
         height: "100%",
       }}
     >
+      <Box
+        sx={{
+          marginBottom: "20px",
+        }}
+      >
+        <Text variant="h1" text="Descubre los usuarios" />
+        <Text
+          variant="body1"
+          text="Selecciona la tabla y encuentra toda la información"
+        />
+      </Box>
       <Box sx={{ borderBottom: 1 }}>
-        <Tabs value={tabSelected} onChange={handleChange} centered>
+        <MaterialTabs value={tabSelected} onChange={handleChange} centered>
           <Tab label="Users" />
           <Tab label="Posts" />
           <Tab label="Albumns" />
-        </Tabs>
+        </MaterialTabs>
       </Box>
       <TabPanel value={tabSelected} index={0}>
         <UsersTable />
@@ -52,4 +64,4 @@ const TabsPage = () => {
   );
 };
 
-export default TabsPage;
+export default Tabs;

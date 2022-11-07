@@ -9,13 +9,13 @@ const GenericDataGrid = (props) => {
   return (
     <Box>
       {input && <LabeledInput input={input} />}
-      <Box sx={{ height: 300, width: 600, marginTop: !input && "39.71px" }}>
+      <Box sx={{ height: 500, width: 1000, marginTop: !input && "39.71px" }}>
         <Box sx={{ display: "flex", height: "100%" }}>
           <Box sx={{ flexGrow: 1 }}>
             <DataGrid
               {...dataTable}
-              rowHeight={20}
-              pageSize={15}
+              rowHeight={30}
+              pageSize={20}
               rowsPerPageOptions={[15]}
               disableColumnMenu
               components={{

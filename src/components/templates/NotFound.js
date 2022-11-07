@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Paragraph from "../atoms/Paragraph";
+import Text from "../atoms/Text";
 import Button from "../atoms/Button";
 
-const PageNotFound = () => {
+const NotFound = () => {
   const navigate = useNavigate();
 
   return (
@@ -17,20 +17,14 @@ const PageNotFound = () => {
         alignItems: "center",
       }}
     >
-      <Paragraph
+      <Text
         variant="h5"
         text="No se ha podido encontrar la página."
         color="primary"
       />
-      <Button
-        variant="contained"
-        onClick={() => navigate("/")}
-        color="primary"
-        sx={{ marginTop: 5, fontSize: "12px", fontWeight: 700 }}
-        text="GO BACK TO HOME PAGE"
-      />
+      <Button onClick={() => navigate("/")} text="GO BACK TO HOME PAGE" />
     </Container>
   );
 };
 
-export default PageNotFound;
+export default NotFound;

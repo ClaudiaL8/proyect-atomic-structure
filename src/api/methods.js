@@ -5,7 +5,7 @@ import {
   COMMENTS_URL,
   ALBUMNS_URL,
   PHOTOS_URL,
-} from "./endpoints";
+} from "./paths";
 
 export const getUsers = async () => {
   const { data } = await axios.get(USERS_URL);
